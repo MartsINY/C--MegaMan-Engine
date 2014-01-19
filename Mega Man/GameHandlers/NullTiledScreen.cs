@@ -29,7 +29,7 @@ namespace MegaMan.Engine
             get { return 0; }
         }
 
-        public MapSquare SquareAt(float px, float py)
+        public IMapSquare SquareAt(float px, float py)
         {
             return null;
         }
@@ -39,7 +39,7 @@ namespace MegaMan.Engine
             return null;
         }
 
-        public IEnumerable<MapSquare> Tiles
+        public IEnumerable<IMapSquare> Tiles
         {
             get { return null; }
         }

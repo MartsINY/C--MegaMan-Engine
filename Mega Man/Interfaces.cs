@@ -10,8 +10,8 @@ namespace MegaMan.Engine
         int TileSize { get; }
         float OffsetX { get; }
         float OffsetY { get; }
-        MapSquare SquareAt(float px, float py);
-        IEnumerable<MapSquare> Tiles { get; }
+        IMapSquare SquareAt(float px, float py);
+        IEnumerable<IMapSquare> Tiles { get; }
         MegaMan.Common.Tile TileAt(float px, float py);
         bool IsOnScreen(float x, float y);
     }

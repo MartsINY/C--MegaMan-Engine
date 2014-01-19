@@ -13,7 +13,7 @@ namespace MegaMan.Engine
 
         private bool inReach;
         private bool inReachCached;
-        private MapSquare inReachTile, aboveTile;
+        private IMapSquare inReachTile, aboveTile;
         private RectangleF reachRect;
 
         public bool InReach
@@ -186,7 +186,7 @@ namespace MegaMan.Engine
             var px = position.Position.X;
             var py = position.Position.Y;
 
-            MapSquare below;
+            IMapSquare below;
             if (Parent.IsGravitySensitive && Parent.Container.IsGravityFlipped)
             {
                 below = Parent.Screen.SquareAt(px, py - Parent.Screen.TileSize);

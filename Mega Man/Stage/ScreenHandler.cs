@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using MegaMan.Common.Geometry;
 using MegaMan.Common;
+using MegaMan.Engine.Entities;
 
 namespace MegaMan.Engine
 {
     public class ScreenHandler : ITiledScreen
     {
-        private StageHandler stage;
         public ScreenInfo Screen { get; private set; }
 
         private readonly IEnumerable<ScreenLayer> layers;
         private readonly List<BlocksPattern> patterns;
-        private readonly List<GameEntity> spawnedEntities;
+        private readonly List<IEntity> spawnedEntities;
         private readonly IEnumerable<JoinHandler> joins;
         private readonly List<bool> teleportEnabled;
         private readonly IGameplayContainer container;
-        private GameEntity player;
+        private IEntity player;
         private PositionComponent playerPos;
 
         private float centerX, centerY;
@@ -60,7 +60,7 @@ namespace MegaMan.Engine
         {
             Screen = screen;
             patterns = new List<BlocksPattern>();
-            spawnedEntities = new List<GameEntity>();
+            spawnedEntities = new List<IEntity>();
 
             this.layers = layers;
 
@@ -73,10 +73,8 @@ namespace MegaMan.Engine
             this.container = container;
         }
 
-        public void Start(StageHandler map, GameEntity player)
+        public void Start(IEntity player)
         {
-            this.stage = map;
-
             this.player = player;
             playerPos = player.GetComponent<PositionComponent>();
 
@@ -167,12 +165,12 @@ namespace MegaMan.Engine
             }
         }
 
-        public void AddEntity(string id, GameEntity entity)
+        public void AddEntity(string id, IEntity entity)
         {
             spawnedEntities.Add(entity);
         }
 
-        public GameEntity GetEntity(string id)
+        public IEntity GetEntity(string id)
         {
             if (id == null) return null;
 
@@ -182,7 +180,7 @@ namespace MegaMan.Engine
                 .FirstOrDefault(e => e != null);
         }
 
-        public IEnumerable<GameEntity> GetEntities(string name)
+        public IEnumerable<IEntity> GetEntities(string name)
         {
             return layers.SelectMany(l => l.GetEntities(name))
                 .Concat(spawnedEntities
@@ -238,9 +236,9 @@ namespace MegaMan.Engine
             }
         }
 
-        public MapSquare SquareAt(float px, float py)
+        public IMapSquare SquareAt(float px, float py)
         {
-            MapSquare square = null;
+            IMapSquare square = null;
 
             foreach (var layer in this.layers.Where(l => !l.Background))
             {
@@ -261,7 +259,7 @@ namespace MegaMan.Engine
             return square.Tile;
         }
 
-        public IEnumerable<MapSquare> Tiles
+        public IEnumerable<IMapSquare> Tiles
         {
             get 
             {

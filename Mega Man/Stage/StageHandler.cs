@@ -197,7 +197,7 @@ namespace MegaMan.Engine
         {
             _currentScreen.JoinTriggered += OnScrollTriggered;
             _currentScreen.Teleport += OnTeleport;
-            _currentScreen.Start(this, Player);
+            _currentScreen.Start(Player);
 
             RunCommands(_currentScreen.Screen.Commands);
         }

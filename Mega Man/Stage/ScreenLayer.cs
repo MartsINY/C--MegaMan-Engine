@@ -13,7 +13,7 @@ namespace MegaMan.Engine
     {
         private readonly ScreenLayerInfo _info;
         private readonly StageHandler _stage;
-        private readonly MapSquare[][] _squares;
+        private readonly IMapSquare[][] _squares;
 
         private readonly IEntityRespawnTracker _respawnTracker;
 
@@ -231,7 +231,7 @@ namespace MegaMan.Engine
             entity.Removed += () => _entities[index] = null;
         }
 
-        public GameEntity GetEntity(string id)
+        public IEntity GetEntity(string id)
         {
             var placementIndex = _info.Entities.FindIndex(p => p.Id == id);
 
@@ -240,12 +240,12 @@ namespace MegaMan.Engine
             return _entities[placementIndex];
         }
 
-        public IEnumerable<GameEntity> GetEntities(string name)
+        public IEnumerable<IEntity> GetEntities(string name)
         {
             return _entities.Where(e => e != null && e.Name == name);
         }
 
-        public MapSquare SquareAt(float px, float py)
+        public IMapSquare SquareAt(float px, float py)
         {
             var location_x = _info.Tiles.BaseX + _locationOffsetX;
             var location_y = _info.Tiles.BaseY + _locationOffsetY;
@@ -258,7 +258,7 @@ namespace MegaMan.Engine
             return _squares[ty][tx];
         }
 
-        public IEnumerable<MapSquare> Tiles
+        public IEnumerable<IMapSquare> Tiles
         {
             get
             {

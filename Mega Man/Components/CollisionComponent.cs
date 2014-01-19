@@ -164,7 +164,7 @@ namespace MegaMan.Engine
             if (!Enabled) return;
 
             // first run through, resolve intersections only
-            List<MapSquare> hitSquares = new List<MapSquare>();
+            List<IMapSquare> hitSquares = new List<IMapSquare>();
             List<Collision> blockEntities = new List<Collision>();
             foreach (CollisionBox hitbox in hitboxes)
             {
@@ -231,7 +231,7 @@ namespace MegaMan.Engine
             }
         }
 
-        private void ReactForHitbox(List<MapSquare> hitSquares, HashSet<TileProperties> hitTypes, CollisionBox hitbox)
+        private void ReactForHitbox(List<IMapSquare> hitSquares, HashSet<TileProperties> hitTypes, CollisionBox hitbox)
         {
             hitbox.SetParent(this);
 
@@ -239,7 +239,7 @@ namespace MegaMan.Engine
 
             if (hitbox.Environment)
             {
-                foreach (MapSquare tile in hitSquares)
+                foreach (var tile in hitSquares)
                 {
                     RectangleF tileBox = tile.BlockBox;
                     bool downonly = (!Parent.Container.IsGravityFlipped && tile.Tile.Properties.Climbable);
@@ -281,7 +281,7 @@ namespace MegaMan.Engine
             return boundBox;
         }
 
-        private void CheckEnvironment(List<MapSquare> hitSquares, CollisionBox hitbox)
+        private void CheckEnvironment(List<IMapSquare> hitSquares, CollisionBox hitbox)
         {
             PointF offset = new PointF(0, 0);
             RectangleF hitRect = hitbox.BoxAt(PositionSrc.Position);
@@ -322,7 +322,7 @@ namespace MegaMan.Engine
             }
         }
 
-        private void CheckEnvironmentTile(List<MapSquare> hitSquares, CollisionBox hitbox, RectangleF hitRect, MapSquare tile, ref PointF offset)
+        private void CheckEnvironmentTile(List<IMapSquare> hitSquares, CollisionBox hitbox, RectangleF hitRect, IMapSquare tile, ref PointF offset)
         {
             if (hitbox.EnvironmentCollisions(PositionSrc.Position, tile, ref offset))
             {
