@@ -299,7 +299,7 @@ namespace MegaMan.Engine
             if (posNodeY != null) posEff += PositionComponent.ParsePositionBehavior(posNodeY, Axis.Y);
             return entity =>
             {
-                GameEntity spawn = entity.Spawn(name);
+                var spawn = entity.Spawn(name);
                 if (spawn == null) return;
                 StateMessage msg = new StateMessage(entity, statename);
                 spawn.SendMessage(msg);
@@ -326,7 +326,7 @@ namespace MegaMan.Engine
                 
                 float pdx = 0;
                 float pdy = 0;
-                GameEntity player = entity.Entities.GetEntityById("Player");
+                var player = entity.Entities.GetEntityById("Player");
                 if (player != null)
                 {
                     var playerPos = player.GetComponent<PositionComponent>();

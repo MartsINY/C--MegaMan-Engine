@@ -18,7 +18,7 @@ namespace MegaMan.Engine
         public IGameplayContainer Container { get { return container; } }
         public ITiledScreen Screen { get { return container.Screen; } }
         public IEntityPool Entities { get { return container.Entities; } }
-        public IEntity Parent { get; private set; }
+        public IEntity Parent { get; set; }
         public bool Running { get; private set; }
         public int MaxAlive { get; set; }
         public bool IsGravitySensitive { get; set; }   // whether to react to gravity flipping (collision and sprite)
@@ -127,9 +127,9 @@ namespace MegaMan.Engine
             }
         }
 
-        public GameEntity Spawn(string entityName)
+        public IEntity Spawn(string entityName)
         {
-            GameEntity spawn = Entities.CreateEntity(entityName);
+            var spawn = Entities.CreateEntity(entityName);
             if (spawn != null)
             {
                 spawn.Parent = this;

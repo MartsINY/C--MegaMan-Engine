@@ -37,7 +37,7 @@ namespace MegaMan.Engine
 
         # region IGameplayContainer Members
 
-        public GameEntity Player { get; private set; }
+        public IEntity Player { get; private set; }
 
         public override ITiledScreen Screen { get { return _currentScreen; } }
 

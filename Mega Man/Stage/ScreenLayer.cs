@@ -27,7 +27,7 @@ namespace MegaMan.Engine
         private int _stopY;
         private int _stopFrame;
 
-        private GameEntity[] _entities;
+        private IEntity[] _entities;
         private bool[] _spawnable;
         private bool[] _respawnable;
 
@@ -187,7 +187,7 @@ namespace MegaMan.Engine
                 if (_entities[i] != null) continue; // already on screen
 
                 var info = _info.Entities[i];
-                GameEntity entity = _stage.Entities.CreateEntity(info.entity);
+                IEntity entity = _stage.Entities.CreateEntity(info.entity);
                 if (entity == null) continue;
 
                 PositionComponent pos = entity.GetComponent<PositionComponent>();
@@ -207,7 +207,7 @@ namespace MegaMan.Engine
             }
         }
 
-        private void PlaceEntity(int index, GameEntity entity)
+        private void PlaceEntity(int index, IEntity entity)
         {
             EntityPlacement info = _info.Entities[index];
 

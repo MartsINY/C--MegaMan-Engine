@@ -9,29 +9,29 @@ namespace MegaMan.Engine.Entities
     {
         private IEntityPool _basePool;
 
-        private readonly List<GameEntity> _additionalEntities;
+        private readonly List<IEntity> _additionalEntities;
 
         public SceneEntityPoolDecorator(IEntityPool basePool)
         {
             _basePool = basePool;
-            _additionalEntities = new List<GameEntity>();
+            _additionalEntities = new List<IEntity>();
         }
 
-        public GameEntity CreateEntity(string name)
+        public IEntity CreateEntity(string name)
         {
             var entity = _basePool.CreateEntity(name);
             _additionalEntities.Add(entity);
             return entity;
         }
 
-        public GameEntity CreateEntityWithId(string id, string name)
+        public IEntity CreateEntityWithId(string id, string name)
         {
             var entity = _basePool.CreateEntityWithId(id, name);
             _additionalEntities.Add(entity);
             return entity;
         }
 
-        public GameEntity GetEntityById(string id)
+        public IEntity GetEntityById(string id)
         {
             return _basePool.GetEntityById(id);
         }
@@ -46,7 +46,7 @@ namespace MegaMan.Engine.Entities
             return _basePool.GetTotalAlive();
         }
 
-        public IEnumerable<GameEntity> GetAll()
+        public IEnumerable<IEntity> GetAll()
         {
             return _basePool.GetAll();
         }

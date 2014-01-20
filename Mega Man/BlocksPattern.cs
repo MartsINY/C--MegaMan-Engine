@@ -13,7 +13,7 @@ namespace MegaMan.Engine
     {
         private class BlockInfo
         {
-            public GameEntity entity;
+            public IEntity entity;
             public PointF pos;
             public int on;
             public int off;

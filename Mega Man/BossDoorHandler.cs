@@ -9,8 +9,8 @@ namespace MegaMan.Engine
         private readonly IGameplayContainer container;
         private readonly IEntityPool _entityPool;
 
-        private GameEntity doorOne;
-        private GameEntity doorTwo;
+        private IEntity doorOne;
+        private IEntity doorTwo;
         private bool open;
         private int triggerSize;
 

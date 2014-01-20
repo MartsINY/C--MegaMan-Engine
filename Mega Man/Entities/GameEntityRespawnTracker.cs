@@ -10,12 +10,12 @@ namespace MegaMan.Engine.Entities
     {
         private readonly Dictionary<EntityPlacement, bool> _respawnableEntities = new Dictionary<EntityPlacement, bool>();
 
-        public void Track(EntityPlacement placement, GameEntity entity)
+        public void Track(EntityPlacement placement, IEntity entity)
         {
             entity.Removed += () => DisableRespawn(placement, entity);
         }
 
-        private void DisableRespawn(EntityPlacement placement, GameEntity entity)
+        private void DisableRespawn(EntityPlacement placement, IEntity entity)
         {
             if (placement.respawn != RespawnBehavior.Offscreen)
                 _respawnableEntities[placement] = false;

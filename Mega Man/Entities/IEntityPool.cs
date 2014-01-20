@@ -7,12 +7,12 @@ namespace MegaMan.Engine.Entities
 {
     public interface IEntityPool
     {
-        GameEntity CreateEntity(string name);
-        GameEntity CreateEntityWithId(string id, string name);
-        GameEntity GetEntityById(string id);
+        IEntity CreateEntity(string name);
+        IEntity CreateEntityWithId(string id, string name);
+        IEntity GetEntityById(string id);
         Int32 GetNumberAlive(string name);
         Int32 GetTotalAlive();
-        IEnumerable<GameEntity> GetAll();
+        IEnumerable<IEntity> GetAll();
         void RemoveAll();
     }
 }

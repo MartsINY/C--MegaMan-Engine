@@ -214,7 +214,7 @@ namespace MegaMan.Engine
                 layer.Stop();
             }
 
-            foreach (GameEntity entity in spawnedEntities)
+            foreach (var entity in spawnedEntities)
             {
                 entity.Remove();
             }

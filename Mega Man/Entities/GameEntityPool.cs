@@ -18,12 +18,12 @@ namespace MegaMan.Engine.Entities
             _entitySource = entitySource;
         }
 
-        public GameEntity CreateEntity(string name)
+        public IEntity CreateEntity(string name)
         {
             return CreateEntityWithId(Guid.NewGuid().ToString(), name);
         }
 
-        public GameEntity CreateEntityWithId(string id, string name)
+        public IEntity CreateEntityWithId(string id, string name)
         {
             // look in the pool
             if (deadEntityPool.ContainsKey(name) && deadEntityPool[name].Any())
@@ -90,7 +90,7 @@ namespace MegaMan.Engine.Entities
             deadEntityPool[entity.Name].Push(entity);
         }
 
-        public IEnumerable<GameEntity> GetAll()
+        public IEnumerable<IEntity> GetAll()
         {
             return entitiesInUse.Values;
         }
@@ -117,7 +117,7 @@ namespace MegaMan.Engine.Entities
         }
 
 
-        public GameEntity GetEntityById(string id)
+        public IEntity GetEntityById(string id)
         {
             if (id != null && entitiesInUse.ContainsKey(id))
                 return entitiesInUse[id];
