@@ -17,7 +17,7 @@ namespace MegaMan.Editor.Controls.ViewModels
             {
                 if (_tileset != null)
                 {
-                    return _tileset.SheetPath.Absolute;
+                    return _tileset.SheetRelativePath.Absolute;
                 }
                 else
                 {

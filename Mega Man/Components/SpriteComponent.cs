@@ -113,8 +113,9 @@ namespace MegaMan.Engine
                 _sheetPath = System.IO.Path.Combine(Game.CurrentGame.BasePath, xmlNode.RequireAttribute("tilesheet").Value);
             }
 
+            // TODO: Fix use of FilePath here
             Sprite sprite = GameXmlReader.LoadSprite(xmlNode);
-            sprite.SheetPath = FilePath.FromAbsolute(_sheetPath, Game.CurrentGame.BasePath);
+            sprite.SheetRelativePath = FilePath.FromAbsolute(_sheetPath, Game.CurrentGame.BasePath).Relative;
             Add(spriteName, sprite, partName);
         }
 

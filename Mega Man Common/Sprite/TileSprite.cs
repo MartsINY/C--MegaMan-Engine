@@ -20,6 +20,18 @@ namespace MegaMan.Common
             _tileset = tileset;
         }
 
+        public override string SheetRelativePath
+        {
+            get
+            {
+                return _tileset.SheetRelativePath;
+            }
+            set
+            {
+                _tileset.SheetRelativePath = value;
+            }
+        }
+
         public override FilePath SheetPath
         {
             get

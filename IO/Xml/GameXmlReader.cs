@@ -18,7 +18,7 @@ namespace MegaMan.IO.Xml
 
             string sheetPath = Path.Combine(basePath, tileattr.Value);
             sprite = LoadSprite(element);
-            sprite.SheetPath = FilePath.FromRelative(tileattr.Value, basePath);
+            sprite.SheetRelativePath = tileattr.Value;
             return sprite;
         }
 

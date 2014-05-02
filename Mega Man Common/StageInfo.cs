@@ -67,6 +67,7 @@ namespace MegaMan.Common
         public int PlayerStartX { get; set; }
         public int PlayerStartY { get; set; }
 
+        public string TilesetRelativePath { get; private set; }
         public Tileset Tileset { get; private set; }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace MegaMan.Editor.Tools
 
         private ImageSource CursorImage
         {
-            get { return SpriteBitmapCache.GetOrLoadFrame(_tileset.SheetPath.Absolute, _tile.Sprite.CurrentFrame.SheetLocation); }
+            get { return SpriteBitmapCache.GetOrLoadFrame(_tileset.SheetRelativePath.Absolute, _tile.Sprite.CurrentFrame.SheetLocation); }
         }
 
         public void ApplyCursorTo(FrameworkElement element)

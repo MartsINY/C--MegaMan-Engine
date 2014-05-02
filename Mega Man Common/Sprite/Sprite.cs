@@ -85,6 +85,12 @@ namespace MegaMan.Common
 
         public int Layer { get; set; }
 
+        public virtual string SheetRelativePath
+        {
+            get;
+            set;
+        }
+
         public virtual FilePath SheetPath
         {
             get
@@ -139,12 +145,8 @@ namespace MegaMan.Common
             this.AnimDirection = copy.AnimDirection;
             this.AnimStyle = copy.AnimStyle;
             this.Layer = copy.Layer;
-            
+            this.SheetRelativePath = copy.SheetRelativePath;
             this.Reversed = copy.Reversed;
-            if (copy.SheetPath != null)
-            {
-                this.SheetPath = FilePath.FromRelative(copy.SheetPath.Relative, copy.SheetPath.BasePath);
-            }
             
             this.PaletteName = copy.PaletteName;
         }
@@ -329,7 +331,7 @@ namespace MegaMan.Common
             if (!Visible || Count == 0 || context == null) return;
 
             if (texture == null)
-                texture = context.LoadResource(SheetPath, PaletteName);
+                texture = context.LoadResource(SheetPath.Absolute, PaletteName);
 
             bool flipHorizontal = HorizontalFlip ^ Reversed;
             bool flipVertical = VerticalFlip;

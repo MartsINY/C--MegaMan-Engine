@@ -20,7 +20,7 @@ namespace MegaMan.Engine.Rendering
 
         private GraphicsDevice _graphicsDevice;
         private List<Texture2D> _loadedTextures;
-        private Dictionary<FilePath, IResourceImage> _loadedResources;
+        private Dictionary<string, IResourceImage> _loadedResources;
         private Dictionary<int, List<Texture2D>> _paletteSwaps;
         private SpriteBatch[] _spriteBatchLayers;
         private bool[] _layersEnabled;
@@ -35,7 +35,7 @@ namespace MegaMan.Engine.Rendering
             _graphicsDevice = graphicsDevice;
 
             _loadedTextures = new List<Texture2D>();
-            _loadedResources = new Dictionary<FilePath, IResourceImage>();
+            _loadedResources = new Dictionary<string, IResourceImage>();
             _paletteSwaps = new Dictionary<int, List<Texture2D>>();
             _spriteBatchLayers = new SpriteBatch[LAYER_COUNT];
             _layersEnabled = new bool[LAYER_COUNT];
@@ -113,7 +113,7 @@ namespace MegaMan.Engine.Rendering
             return _opacity;
         }
 
-        public IResourceImage LoadResource(FilePath texturePath, string paletteName = null)
+        public IResourceImage LoadResource(string texturePath, string paletteName = null)
         {
             if (!_loadedResources.ContainsKey(texturePath))
             {
@@ -125,9 +125,9 @@ namespace MegaMan.Engine.Rendering
             return _loadedResources[texturePath];
         }
 
-        private Texture2D GetTextureFromPath(FilePath path)
+        private Texture2D GetTextureFromPath(string path)
         {
-            StreamReader sr = new StreamReader(path.Absolute);
+            StreamReader sr = new StreamReader(path);
             return Texture2D.FromStream(_graphicsDevice, sr.BaseStream);
         }
 

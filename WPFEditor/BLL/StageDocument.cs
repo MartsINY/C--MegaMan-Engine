@@ -108,12 +108,10 @@ namespace MegaMan.Editor.Bll
             if (sheetPath == null)
                 throw new ArgumentNullException("sheetPath");
 
-            var tilesetPath = new ProjectFileStructure(this.Project.Project).CreateTilesetPath(this.Name);
             var sheetFilePath = FilePath.FromAbsolute(sheetPath, map.StagePath.BasePath);
             var tileset = new Tileset();
             tileset.TileSize = 16;
-            tileset.FilePath = tilesetPath;
-            tileset.SheetPath = sheetFilePath;
+            tileset.SheetRelativePath = sheetFilePath;
             map.ChangeTileset(tileset);
             tileset.Save();
         }

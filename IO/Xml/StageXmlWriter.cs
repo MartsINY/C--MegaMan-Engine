@@ -28,7 +28,7 @@ namespace MegaMan.IO.Xml
             _writer.WriteStartElement("Map");
             _writer.WriteAttributeString("name", _stageInfo.Name);
 
-            _writer.WriteAttributeString("tiles", _stageInfo.Tileset.FilePath.Relative);
+            _writer.WriteAttributeString("tiles", _stageInfo.TilesetRelativePath);
 
             if (_stageInfo.MusicIntroPath != null || _stageInfo.MusicLoopPath != null || _stageInfo.MusicNsfTrack > 0)
             {

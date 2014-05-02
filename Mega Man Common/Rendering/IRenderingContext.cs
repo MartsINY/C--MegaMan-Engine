@@ -8,7 +8,7 @@ namespace MegaMan.Common.Rendering
 {
     public interface IRenderingContext
     {
-        IResourceImage LoadResource(FilePath texturePath, String paletteName = null);
+        IResourceImage LoadResource(string texturePath, String paletteName = null);
         IResourceImage CreateColorResource(Color color);
         void Begin();
         void End();

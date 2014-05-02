@@ -13,9 +13,8 @@ namespace MegaMan.Common
         private Dictionary<string, TileProperties> properties;
         public IEnumerable<TileProperties> Properties { get { return properties.Values; } }
 
+        public string SheetRelativePath { get; set; }
         public FilePath SheetPath { get; set; }
-
-        public FilePath FilePath { get; set; }
 
         public int TileSize { get; set; }
 
@@ -27,13 +26,12 @@ namespace MegaMan.Common
 
         public void ChangeSheetPath(string path)
         {
-            SheetPath = FilePath.FromAbsolute(path, FilePath.BasePath);
+            SheetRelativePath = path;
         }
 
         public Tile AddTile()
         {
             var sprite = new TileSprite(this);
-            sprite.SheetPath = SheetPath;
             var tile = new Tile(this.Count, sprite);
             base.Add(tile);
             return tile;
@@ -52,28 +50,15 @@ namespace MegaMan.Common
 
         public void Save(string path)
         {
-            if (FilePath == null)
-            {
-                FilePath = FilePath.FromAbsolute(path, Directory.GetParent(path).FullName);
-            }
-            else
-            {
-                FilePath = FilePath.FromAbsolute(path, FilePath.BasePath);
-            }
-            Save();
-        }
-
-        public void Save()
-        {
-            XmlTextWriter writer = new XmlTextWriter(FilePath.Absolute, null);
+            XmlTextWriter writer = new XmlTextWriter(path, null);
             writer.Formatting = Formatting.Indented;
             writer.Indentation = 1;
             writer.IndentChar = '\t';
 
             writer.WriteStartElement("Tileset");
 
-            if (SheetPath != null)
-                writer.WriteAttributeString("tilesheet", SheetPath.Relative);
+            if (SheetRelativePath != null)
+                writer.WriteAttributeString("tilesheet", SheetRelativePath);
 
             writer.WriteAttributeString("tilesize", TileSize.ToString());
 

@@ -39,7 +39,7 @@ namespace MegaMan.Editor.Controls.ViewModels
         {
             get
             {
-                return _tileset.SheetPath.Relative;
+                return _tileset.SheetRelativePath.Relative;
             }
         }
 
@@ -72,7 +72,7 @@ namespace MegaMan.Editor.Controls.ViewModels
             ChangeSheetCommand = new RelayCommand(o => ChangeSheet());
             AddTileCommand = new RelayCommand(o => AddTile());
 
-            if (!File.Exists(_tileset.SheetPath.Absolute))
+            if (!File.Exists(_tileset.SheetRelativePath.Absolute))
             {
                 ChangeSheet();
             }
@@ -92,8 +92,8 @@ namespace MegaMan.Editor.Controls.ViewModels
             var dialog = new CommonOpenFileDialog();
             dialog.Filters.Add(new CommonFileDialogFilter("Images", "png,gif,jpg,jpeg,bmp"));
 
-            if (_tileset.SheetPath != null)
-                dialog.InitialDirectory = _tileset.SheetPath.Absolute;
+            if (_tileset.SheetRelativePath != null)
+                dialog.InitialDirectory = _tileset.SheetRelativePath.Absolute;
             else
                 dialog.InitialDirectory = _project.Project.BaseDir;
 
