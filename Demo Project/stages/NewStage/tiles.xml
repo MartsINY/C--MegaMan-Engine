@@ -1,6 +1,6 @@
 <Tileset tilesheet="tilesets\cossack3.png" tilesize="16">
 	<TileProperties>
-		<Properties name="Block" blocking="true" resistX="0.5" />
+		<Properties name="Block" blocking="true" resistX="0,5" />
 	</TileProperties>
 	<Tile id="0" name="" properties="Block">
 		<Sprite width="16" height="16" tilesheet="tilesets\cossack3.png">
