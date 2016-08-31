@@ -1,0 +1,204 @@
+<Entities>
+	<Entity name="SheepMan">
+		<Position persistoffscreen="true" />
+		<Tilesheet>images\boss\SheepMan\Standing.png</Tilesheet>
+		<Sprite name="Ready" width="28" height="29" reversed="true">
+			<Hotspot x="14" y="15" />
+			<Frame x="29" y="0" duration="2" />
+			<Frame x="58" y="0" duration="2" />
+		</Sprite>
+		<Sprite name="Stand" width="28" height="29" reversed="true">
+			<Hotspot x="14" y="15" />
+			<Frame x="0" y="0" duration="0" />
+		</Sprite>
+		<Sprite name="Jump" width="35" height="29" reversed="true">
+			<Hotspot x="18" y="15" />
+			<Frame x="0" y="0" duration="0" />
+		</Sprite>
+		<Health startValue="0">
+			<Max>28</Max>
+			<Meter x="32" y="16" background="images\meters\healthmeter_back.png" image="images\meters\sheephealth.png">
+				<Sound name="MeterTick" />
+			</Meter>
+			<Flash>60</Flash>
+		</Health>
+		<Collision>
+			<!-- Collision box here are for environment, do one for player contact -->
+			<Hitbox name="Stand" damage="5" x="-8" y="-14" width="16" height="27">
+				<Group>Enemy</Group><Hits>Player</Hits>
+			</Hitbox>
+			<Hitbox name="ThroughCloseFloorOnly" damage="5" x="-8" y="-20" width="16" height="1">
+				<Group>Enemy</Group><Hits>Player</Hits>
+			</Hitbox>
+		</Collision>
+		<State name="Start">
+			<Sprite><Name>Stand</Name><Facing>Player</Facing></Sprite>
+			<Movement>
+				<Floating>False</Floating>
+				<FlipSprite>True</FlipSprite>
+			</Movement>
+			<Trigger condition="StateTime == 30">
+				<Effect>
+					<State>Stand</State>
+					<Collision>
+						<EnableBox name="Stand" />
+					</Collision>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Stand">
+			<Sprite><Name>Stand</Name></Sprite>
+			<Collision><EnableBox name="Stand" /></Collision>
+			<Trigger>
+				<Condition>StateTime >= 50</Condition>
+				<Effect>
+					<Sprite><Name>Stand</Name></Sprite>
+					<Movement><Y magnitude="6.5" direction="Up" /></Movement>
+					<State>Jump</State>
+					<Collision><EnableBox name="ThroughCloseFloorOnly" /></Collision>
+					<Trigger><Condition>PlayerDistX &lt; 0</Condition>
+						<Effect>
+							<Movement><X magnitude="2" direction="Right" /></Movement>
+						</Effect>
+					</Trigger>
+					<Trigger><Condition>PlayerDistX &gt;= 0</Condition>
+						<Effect>
+							<Movement><X magnitude="2" direction="Left" /></Movement>
+						</Effect>
+					</Trigger>
+					<Trigger><Condition>Position.Position.X &gt; 200</Condition>
+						<Effect>
+							<Movement><X magnitude="2" direction="Left" /></Movement>
+						</Effect>
+					</Trigger>
+					<Trigger><Condition>Position.Position.X &lt; 50</Condition>
+						<Effect>
+							<Movement><X magnitude="2" direction="Right" /></Movement>
+						</Effect>
+					</Trigger>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Jump">
+			<Trigger>
+				<Condition>StateTime >= 5</Condition>
+				<Effect>
+					<Collision><EnableBox name="Stand" /></Collision>
+					<Trigger>
+						<Condition>(Position.Position.X - 24) % 32 == 0</Condition>
+						<Effect>
+							<Movement><X magnitude="0" /><Y magnitude="0" /></Movement>
+								<!-- face player-->
+								<State>Shoot</State>
+								<Movement><Floating>True</Floating></Movement>
+						</Effect>
+					</Trigger>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Shoot">
+			<Trigger>
+				<Condition>StateTime == 10</Condition>
+				<Effect>
+					<State>Fall</State>
+					<Spawn name="SheepThunderShock" />
+					<Movement><Floating>False</Floating></Movement>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Fall">
+			<Trigger>
+				<Condition>Collision.BlockBottom</Condition>
+				<Effect><State>Stand</State></Effect>
+			</Trigger>
+		</State>
+        <Trigger>
+            <Condition>Health.Hit == True</Condition>
+            <Effect>
+                <Sound name="EnemyHurt" />
+            </Effect>
+        </Trigger>
+		<Death>
+			<Spawn name="MegaManDeath" state="Up" />
+			<Spawn name="MegaManDeath" state="Down" />
+			<Spawn name="MegaManDeath" state="Left" />
+			<Spawn name="MegaManDeath" state="Right" />
+			<Spawn name="MegaManDeath" state="UpLeft" />
+			<Spawn name="MegaManDeath" state="UpRight" />
+			<Spawn name="MegaManDeath" state="DownLeft" />
+			<Spawn name="MegaManDeath" state="DownRight" />
+			<Spawn name="MegaManDeath" state="UpFast" />
+			<Spawn name="MegaManDeath" state="DownFast" />
+			<Spawn name="MegaManDeath" state="LeftFast" />
+			<Spawn name="MegaManDeath" state="RightFast" />
+			<Spawn name="MegaManDeath" state="UpLeftFast" />
+			<Spawn name="MegaManDeath" state="UpRightFast" />
+			<Spawn name="MegaManDeath" state="DownLeftFast" />
+			<Spawn name="MegaManDeath" state="DownRightFast" />
+			<Sound name="MMDeath" />
+            <Next mode="Push" type="Scene" name="BossDefeated" pause="false" />
+		</Death>
+	</Entity>
+
+	<Entity name="SheepThunderShock">
+		<Sprite tilesheet="images\boss\SheepMan\Shot.png" width="12" height="12" reversed="true">
+			<Hotspot x="6" y="6" />
+			<Frame x="0" y="0" duration="2" />
+			<Frame x="12" y="0" duration="2" />
+		</Sprite>
+		<Collision>
+			<Hitbox name="H" damage="6" x="-4" y="-4" width="8" height="8" environment="false">
+				<Hits>Player</Hits>
+				<Group>Projectile</Group>
+			</Hitbox>
+		</Collision>
+		<State name="Start">
+			<Collision><EnableBox name="H" /></Collision>
+			<Position>
+				<X base="Inherit" />
+				<Y base="Inherit" />
+			</Position>
+			<Movement>
+				<X magnitude="4" direction="Inherit" />
+				<Floating>True</Floating>
+			</Movement>
+			<State>IsCloseEnough</State>
+		</State>
+		<State name="IsCloseEnough">
+			<!-- check insted if passed mega man knowing direction -->
+			<Trigger><Condition>PlayerDistAbsX &lt; 2</Condition><Effect><State>Explode</State></Effect></Trigger>
+		</State>
+		<State name="Explode">
+			<Trigger><Condition>StateTime == 2</Condition><Effect><Spawn name="SheepThunder" /><Remove /></Effect></Trigger>
+		</State>
+	</Entity>
+
+	<Entity name="SheepThunder">
+		<Sprite tilesheet="images\boss\SheepMan\Lightning.png" width="11" height="600" reversed="true">
+			<Hotspot x="6" y="300" />
+			<Frame x="0" y="0" duration="2" />
+			<Frame x="11" y="0" duration="2" />
+			<Frame x="22" y="0" duration="2" />
+		</Sprite>
+		<Collision>
+			<Hitbox name="H" damage="4" x="-4" y="-300" width="8" height="600" environment="false">
+				<Hits>Player</Hits>
+				<Group>Projectile</Group>
+			</Hitbox>
+		</Collision>
+		<State name="Start">
+			<Collision><EnableBox name="H" /></Collision>
+			<Position>
+				<X base="Inherit" />
+				<Y base="Inherit" />
+			</Position>
+			<Movement>
+				<Floating>True</Floating>
+			</Movement>
+			<Trigger>
+				<Condition>StateTime == 20</Condition>
+				<Effect><Remove /></Effect>
+			</Trigger>
+		</State>
+	</Entity>
+</Entities>
