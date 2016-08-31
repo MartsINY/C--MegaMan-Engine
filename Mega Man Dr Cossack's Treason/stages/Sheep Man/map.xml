@@ -1,0 +1,18 @@
+<Map name="Sheep Man" tiles="tilesets\Sheep Man\tiles.xml">
+	<Music nsftrack="10" />
+	<Start screen="2" x="128" y="179" />
+	<Screen id="1">
+		<Entity id="259a3f6d-f365-49b1-bab4-29d2a38f59d5" entity="SheepMan" x="226" y="6" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="2">
+		<Entity id="671c5943-68d4-4b58-a98b-16c5bfe80b83" entity="Peterchy" x="128" y="81" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="3" />
+	<Screen id="4" />
+	<Screen id="5" />
+	<Join type="horizontal" s1="5" s2="4" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="horizontal" s1="3" s2="2" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="vertical" s1="3" s2="1" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="vertical" s1="1" s2="4" offset1="14" offset2="0" size="2" direction="both" />
+	<Join type="vertical" s1="1" s2="5" offset1="0" offset2="0" size="14" direction="both" />
+</Map>

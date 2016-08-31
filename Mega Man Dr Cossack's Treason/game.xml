@@ -1,0 +1,24 @@
+<Game name="Engine Demo" author="Tesserex" version="1.0.0.0">
+	<Size x="256" y="256" />
+	<NSF>
+		<Music>music\mm5.nsf</Music>
+		<SFX>music\mm5.nsf</SFX>
+	</NSF>
+	<Stages>
+		<Stage name="Crystal" path="stages\crystal" />
+		<Stage name="Demo" path="stages\demo" />
+		<Stage name="Test" path="stages\Test" />
+		<Stage name="Elec" path="stages\Elec" />
+		<Stage name="Metal" path="stages\Metal" />
+		<Stage name="Parallax" path="stages\Parallax" />
+		<Stage name="NewStage" path="stages\NewStage" />
+		<Stage name="TilesetTest" path="stages\TilesetTest" />
+		<Stage name="Puzzle" path="stages\Puzzle" />
+		<Stage name="SheepMan" path="stages\Sheep Man" />
+	</Stages>
+	<Next type="Menu" name="Title" fade="False" />
+	<IncludeFolder>objects</IncludeFolder>
+	<Include>sounds\sounds.xml</Include>
+	<Include>images\fonts\fonts.xml</Include>
+	<Include>images\palettes.xml</Include>
+</Game>

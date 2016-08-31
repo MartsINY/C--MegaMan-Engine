@@ -1,0 +1,49 @@
+<Map name="demo" tiles="stages\demo\tiles.xml">
+	<Music nsftrack="10" />
+	<Start screen="Start" x="128" y="60" />
+	<Continue screen="Continue" x="32" y="148" />
+	<Screen id="Start">
+		<Entity id="4e234ce2-a508-4d1b-812b-74fbdfd11d0b" entity="ExtraLife" x="110" y="161" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="Second">
+		<Entity id="ad0548b8-331e-4fd8-8a7a-1424836eed42" entity="ShieldShooter" x="128" y="80" direction="Unknown" respawn="Offscreen" />
+		<Entity id="a15f79a2-257e-48c7-8ff2-08c19a66c594" entity="Metool" x="220" y="236" direction="Unknown" respawn="Offscreen" />
+		<Entity id="a44d9fff-c7c5-43e6-b4c9-b06c81d84a77" entity="GroundCannon" x="112" y="320" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="Third">
+		<Entity id="1f58bba7-fb6e-40ce-897a-7182f5d53286" entity="Collapser" x="128" y="192" direction="Unknown" respawn="Offscreen" />
+		<Entity id="5d3e0587-ca40-4b84-a157-eeb3a76a1beb" entity="Collapser" x="130" y="112" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="BottomLeft">
+		<Entity id="0da585e2-56b8-4674-bd23-1f8d0a74c217" entity="FloorBlade" x="60" y="168" direction="Unknown" respawn="Offscreen" />
+		<Entity id="6779f117-b89b-47ff-996e-db258f2d8cfc" entity="SpikeBlock" x="220" y="120" direction="Unknown" respawn="Offscreen" />
+		<Entity id="e268279b-925e-4e83-84fb-246b92de15e2" entity="SpikeBlock" state="Vert" x="280" y="104" direction="Unknown" respawn="Offscreen" />
+		<Entity id="5440d20c-0b88-4ac9-a25d-4ad4f3492ff8" entity="SpikeBlock" x="330" y="120" direction="Unknown" respawn="Offscreen" />
+		<Entity id="fd15e4ec-71fe-4f7d-819a-41c898fdf044" entity="SpikeBlock" state="Vert" x="400" y="104" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="Slide" />
+	<Screen id="Continue">
+		<Entity id="789f4f11-7f5b-447e-9d43-10d35d35235a" entity="Wheel" x="144" y="180" direction="Unknown" respawn="Offscreen" />
+		<Entity id="c18c2e1c-a3db-4170-bddf-5f548e996259" entity="WallSpike" x="148" y="174" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="Water">
+		<Entity id="fbc3d2e2-b8ec-4fac-858a-763effc4e281" entity="PropFollower" x="32" y="64" direction="Unknown" respawn="Offscreen" />
+		<Entity id="646a0e4b-411b-4183-88bc-f1925c5ea9a4" entity="PropFollower" x="212" y="48" direction="Unknown" respawn="Offscreen" />
+		<Entity id="e241696e-53d7-41a5-95ef-1e1a19266df2" entity="PropFollower" x="80" y="128" direction="Unknown" respawn="Offscreen" />
+		<Entity id="e06b5624-c5ca-4048-86e1-8b21b1aa1f63" entity="Seeker" x="128" y="40" direction="Unknown" respawn="Offscreen" />
+		<Entity id="3a089a3e-7fe2-4e72-8371-e672559b37ff" entity="Seeker" x="48" y="172" direction="Unknown" respawn="Offscreen" />
+		<Entity id="8715c915-fc67-43e2-8a92-b5d002a35ae9" entity="Seeker" x="192" y="80" direction="Unknown" respawn="Offscreen" />
+	</Screen>
+	<Screen id="Stars">
+		<Entity id="4d5209fc-2bf9-4953-b325-dbda42ceef8b" entity="Moving" x="552" y="128" direction="Unknown" respawn="Offscreen" />
+		<Overlay name="parallax" x="0" y="0" parallax="True" />
+	</Screen>
+	<Join type="horizontal" s1="Start" s2="Second" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="horizontal" s1="Second" s2="Third" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="horizontal" s1="Third" s2="BottomLeft" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="vertical" s1="Third" s2="Slide" offset1="8" offset2="8" size="4" direction="both" />
+	<Join type="horizontal" s1="Slide" s2="BottomLeft" offset1="0" offset2="16" size="16" direction="both" />
+	<Join type="vertical" s1="BottomLeft" s2="Continue" offset1="0" offset2="0" size="14" direction="forward" />
+	<Join type="horizontal" s1="Water" s2="Continue" offset1="0" offset2="0" size="16" direction="both" />
+	<Join type="vertical" s1="Water" s2="Stars" offset1="0" offset2="0" size="14" direction="both" />
+</Map>

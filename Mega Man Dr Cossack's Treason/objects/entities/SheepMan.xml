@@ -1,0 +1,105 @@
+<Entities>
+	<Entity name="SheepMan">
+		<Position persistoffscreen="true" />
+		<Tilesheet>images\boss\SheepMan\Standing.png</Tilesheet>
+		<Sprite name="Ready" width="28" height="29" reversed="true">
+			<Hotspot x="14" y="15" />
+			<Frame x="29" y="0" duration="2" />
+			<Frame x="58" y="0" duration="2" />
+		</Sprite>
+		<Sprite name="Stand" width="28" height="29" reversed="true">
+			<Hotspot x="14" y="15" />
+			<Frame x="0" y="0" duration="0" />
+		</Sprite>
+		<Sprite name="Jump" width="35" height="29" reversed="true">
+			<Hotspot x="18" y="15" />
+			<Frame x="0" y="0" duration="0" />
+		</Sprite>
+		<Health startValue="0">
+			<Max>28</Max>
+			<Meter x="32" y="16" background="images\meters\healthmeter_back.png" image="images\meters\sheephealth.png">
+				<Sound name="MeterTick" />
+			</Meter>
+			<Flash>60</Flash>
+		</Health>
+		<Collision>
+			<Hitbox name="Stand" damage="5" x="-12" y="-14" width="24" height="27">
+				<Group>Enemy</Group><Hits>Player</Hits>
+			</Hitbox>
+		</Collision>
+		<State name="Start">
+			<Sprite><Name>Stand</Name><Facing>Player</Facing></Sprite>
+			<Movement>
+				<Floating>False</Floating>
+				<FlipSprite>True</FlipSprite>
+			</Movement>
+			<Trigger condition="StateTime == 30">
+				<Effect>
+					<State>Stand</State>
+					<Collision>
+						<EnableBox name="Stand" />
+					</Collision>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Stand">
+			<Sprite><Name>Stand</Name></Sprite>
+			<Collision><EnableBox name="Stand" /></Collision>
+			<Trigger>
+				<Condition>StateTime >= 50</Condition>
+				<Effect>
+					<Collision><EnableBox name="Stand" /></Collision>
+					<Sprite><Name>Jump</Name></Sprite>
+					<Movement><Y magnitude="6.5" direction="Up" /></Movement>
+					<State>Jump</State>
+					<Trigger condition="playerdistx &lt; 0">
+						<Effect>
+							<Movement><X magnitude="4" direction="Left" /></Movement>
+						</Effect>
+					</Trigger>
+					<Trigger condition="playerdistx &gt;= 0">
+						<Effect>
+							<Movement><X magnitude="4" direction="Left" /></Movement>
+						</Effect>
+					</Trigger>
+				</Effect>
+			</Trigger>
+		</State>
+		<State name="Jump">
+			<Trigger>
+				<Condition>StateTime >= 5 AND ((Position.Position.X - 24) % 32 == 0)</Condition>
+				<Effect><Movement><X magnitude="0" /></Movement></Effect>
+			</Trigger>
+			<Trigger>
+				<Condition>Collision.BlockBottom</Condition>
+				<Effect><State>Stand</State></Effect>
+			</Trigger>
+		</State>
+        <Trigger>
+            <Condition>Health.Hit == True</Condition>
+            <Effect>
+                <Sound name="EnemyHurt" />
+            </Effect>
+        </Trigger>
+		<Death>
+			<Spawn name="MegaManDeath" state="Up" />
+			<Spawn name="MegaManDeath" state="Down" />
+			<Spawn name="MegaManDeath" state="Left" />
+			<Spawn name="MegaManDeath" state="Right" />
+			<Spawn name="MegaManDeath" state="UpLeft" />
+			<Spawn name="MegaManDeath" state="UpRight" />
+			<Spawn name="MegaManDeath" state="DownLeft" />
+			<Spawn name="MegaManDeath" state="DownRight" />
+			<Spawn name="MegaManDeath" state="UpFast" />
+			<Spawn name="MegaManDeath" state="DownFast" />
+			<Spawn name="MegaManDeath" state="LeftFast" />
+			<Spawn name="MegaManDeath" state="RightFast" />
+			<Spawn name="MegaManDeath" state="UpLeftFast" />
+			<Spawn name="MegaManDeath" state="UpRightFast" />
+			<Spawn name="MegaManDeath" state="DownLeftFast" />
+			<Spawn name="MegaManDeath" state="DownRightFast" />
+			<Sound name="MMDeath" />
+            <Next mode="Push" type="Scene" name="BossDefeated" pause="false" />
+		</Death>
+	</Entity>
+</Entities>
