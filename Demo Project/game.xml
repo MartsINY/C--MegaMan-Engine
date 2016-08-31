@@ -1,5 +1,5 @@
 <Game name="Engine Demo" author="Tesserex" version="1.0.0.0">
-	<Size x="256" y="256" />
+	<Size x="256" y="224" />
 	<NSF>
 		<Music>music\mm5.nsf</Music>
 		<SFX>music\mm5.nsf</SFX>
@@ -14,7 +14,6 @@
 		<Stage name="NewStage" path="stages\NewStage" />
 		<Stage name="TilesetTest" path="stages\TilesetTest" />
 		<Stage name="Puzzle" path="stages\Puzzle" />
-		<Stage name="SheepMan" path="stages\Sheep Man" />
 	</Stages>
 	<Next type="Menu" name="Title" fade="False" />
 	<IncludeFolder>objects</IncludeFolder>

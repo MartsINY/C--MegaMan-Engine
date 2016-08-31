@@ -2,7 +2,7 @@
 	<Music nsftrack="7" />
 	<Start screen="1" x="61" y="144" />
 	<Screen id="1">
-		<Autoscroll speed="5" startX="130" />
+		<Autoscroll speed="0.5" startX="130" />
 		<Entity id="8c50561c-f2e6-4f87-b038-666a9f260ebc" entity="WallSpike" x="327" y="138" direction="Unknown" respawn="Offscreen" />
 		<Entity id="a3936baf-02db-4608-8b15-1e2ec8a5048b" entity="WallSpike" x="521" y="76" direction="Unknown" respawn="Offscreen" />
 		<Entity id="96c8b221-3241-4703-b776-4a4db78636c9" entity="WallSpike" x="685" y="141" direction="Unknown" respawn="Offscreen" />

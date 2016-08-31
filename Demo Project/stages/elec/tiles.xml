@@ -1,7 +1,7 @@
 <Tileset tilesheet="stages\elec\tiles.png" tilesize="16">
 	<TileProperties>
-		<Properties name="block" blocking="true" resistX="0,85" />
-		<Properties name="ladder" climbable="true" resistX="0,85" />
+		<Properties name="block" blocking="true" resistX="0.85" />
+		<Properties name="ladder" climbable="true" resistX="0.85" />
 	</TileProperties>
 	<Tile id="0" name="" properties="block">
 		<Sprite width="16" height="16" tilesheet="stages\elec\tiles.png">

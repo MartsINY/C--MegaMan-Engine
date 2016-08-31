@@ -146,8 +146,7 @@
 				<SpriteMove name="RightEye" x="134" y="112" />
 			</On>
 			<Select>
-				<Sound name="Select" />
-				<Next type="Stage" name="SheepMan" fade="True" />
+				<Sound name="Deny" />
 			</Select>
 		</Option>
 
