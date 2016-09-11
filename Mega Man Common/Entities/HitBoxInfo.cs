@@ -21,6 +21,8 @@ namespace MegaMan.Common.Entities
 
         public bool PushAway { get; set; }
 
+        public bool WalkOnLadderTops { get; set; }
+
         public HitBoxInfo()
         {
             Hits = new List<string>();

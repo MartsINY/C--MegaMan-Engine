@@ -36,6 +36,7 @@ namespace MegaMan.IO.Xml.Effects
                 writer.WriteAttributeString("damage", hitbox.ContactDamage.ToString());
                 writer.WriteAttributeString("environment", hitbox.Environment.ToString());
                 writer.WriteAttributeString("pushaway", hitbox.PushAway.ToString());
+                writer.WriteAttributeString("ladderwalk", hitbox.WalkOnLadderTops.ToString());
                 writer.WriteAttributeString("properties", hitbox.PropertiesName);
 
                 foreach (var group in hitbox.Groups)

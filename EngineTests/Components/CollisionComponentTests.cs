@@ -39,6 +39,7 @@ namespace MegaMan.Engine.Tests.Components
             hitbox.Name = "Test";
             hitbox.Environment = true;
             hitbox.PushAway = true;
+            hitbox.WalkOnLadderTops = true;
             _position.SetPosition(5f, 115.999992f);
             _collision.AddBox(hitbox);
             _collision.Message(new HitBoxMessage(EntityMock.Object, new List<CollisionBox>(), new HashSet<string>() { "Test" }, false));

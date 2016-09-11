@@ -522,7 +522,11 @@ namespace MegaMan.Engine
             if (hitbox.EnvironmentCollisions(PositionSrc.Position, tile, ref offset))
             {
                 hitSquares.Add(tile);
-                if (hitbox.PushAway && pushAway) PositionSrc.Offset(offset.X, offset.Y);
+                if (hitbox.PushAway && pushAway)
+                {
+                    if (tile.Properties.Climbable == false || (tile.Properties.Climbable && hitbox.WalkOnLadderTops))
+                        PositionSrc.Offset(offset.X, offset.Y);
+                }
             }
             else if (hitRect.IntersectsWith(tile.BoundBox))
             {

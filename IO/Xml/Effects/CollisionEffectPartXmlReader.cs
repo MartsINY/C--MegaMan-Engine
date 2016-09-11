@@ -47,6 +47,7 @@ namespace MegaMan.IO.Xml.Effects
                     ContactDamage = box.TryAttribute<float>("damage"),
                     Environment = box.TryAttribute<bool>("environment", true),
                     PushAway = box.TryAttribute<bool>("pushaway", true),
+                    WalkOnLadderTops = box.TryAttribute<bool>("ladderwalk", false),
                     PropertiesName = box.TryAttribute<string>("properties", "Default")
                 };
 

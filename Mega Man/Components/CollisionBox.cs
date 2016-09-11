@@ -24,6 +24,8 @@ namespace MegaMan.Engine
 
         public bool PushAway { get; set; }
 
+        public bool WalkOnLadderTops { get; set; }
+
         public TileProperties Properties { get; private set; }
 
         private static int nextID = 0;
@@ -43,6 +45,7 @@ namespace MegaMan.Engine
             ContactDamage = info.ContactDamage;
             Environment = info.Environment;
             PushAway = info.PushAway;
+            WalkOnLadderTops = info.WalkOnLadderTops;
 
             Hits = new List<string>(info.Hits);
             Groups = new List<string>(info.Groups);

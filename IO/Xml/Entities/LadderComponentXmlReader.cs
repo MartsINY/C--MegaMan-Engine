@@ -33,6 +33,7 @@ namespace MegaMan.IO.Xml.Entities
                 ContactDamage = boxnode.TryAttribute<float>("damage"),
                 Environment = boxnode.TryAttribute<bool>("environment", true),
                 PushAway = boxnode.TryAttribute<bool>("pushaway", true),
+                WalkOnLadderTops = boxnode.TryAttribute<bool>("ladderwalk", false),
                 PropertiesName = boxnode.TryAttribute<string>("properties", "Default")
             };
             return box;
