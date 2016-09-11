@@ -19,6 +19,8 @@ namespace MegaMan.Engine
 
         public float X { get { return Position.X; } }
         public float Y { get { return Position.Y; } }
+        public float PreviousX { private set; get; }
+        public float PreviousY { private set; get; }
 
         public PositionComponent()
         {
@@ -58,6 +60,18 @@ namespace MegaMan.Engine
             pos.Y = (float)Math.Round(pos.Y, 3);
             Position = pos;
         }
+
+        public void MemorisePosition()
+        {
+            PreviousX = X;
+            PreviousY = Y;
+        }
+
+        public float GetMemorisedPositionX() { return PreviousX; }
+        public float GetMemorisedPositionY() { return PreviousY; }
+        
+        public float GetDifferenceBetweenPositionAndMemorisedPositionX() { return X - PreviousX; }
+        public float GetDifferenceBetweenPositionAndMemorisedPositionY() { return Y - PreviousY; }
 
         protected override void Update()
         {
